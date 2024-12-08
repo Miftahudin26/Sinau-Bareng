@@ -58,6 +58,7 @@ class SupplierResource extends Resource
                 ->searchable(),
 
                 TextColumn::make('alamat')
+                ->sortable()
                 ->searchable(),
 
                 TextColumn::make('kontak')
