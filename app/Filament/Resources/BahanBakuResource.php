@@ -2,20 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BahanBakuResource\Pages;
-use App\Filament\Resources\BahanBakuResource\RelationManagers;
-use App\Models\BahanBaku;
-use App\Models\Supplier;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\Supplier;
+use App\Models\User;
+use Filament\Forms\Form;
+use App\Models\BahanBaku;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Navigation\NavigationItem;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\BahanBakuResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\BahanBakuResource\RelationManagers;
 
 class BahanBakuResource extends Resource
 {
@@ -82,6 +86,14 @@ class BahanBakuResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                // EditAction::make()
+                //     ->visible(fn(): bool =>
+                //         auth()->user()->hasAnyRole(['admin', 'staff_gudang'])
+                //     ),
+                // DeleteAction::make()
+                //     ->visible(fn(): bool =>
+                //         auth()->Auth::user()->hasAnyRole(['admin', 'staff_gudang'])
+                //     )
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
